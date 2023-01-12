@@ -20,9 +20,9 @@ export const DataProvider = (props) => {
 
   const [cart, setCart] = useState([]);
   const addToCart = (id) => {
-    const isNotInCart = cart.every((item) => item._id !== id);
+    const isNotInCart = cart.every((item) => item.id !== id);
     if (isNotInCart) {
-      const foundProduct = products.filter((item) => item._id === id);
+      const foundProduct = products.filter((item) => item.id === id);
       setCart([...cart, ...foundProduct]);
     } else {
       alert("Bond is already in cart");

@@ -9,12 +9,24 @@ const Products = () => {
   return (
     <div>
          {products.map((product)=>(
-            <div  product={product} key={product._id}> 
-                <h1> {product.title} </h1>
+            <div  product={product} key={product.id}> 
+               <div> 
+                     <h1> {product.title} </h1>
 
+                  <img className="h-6"  src={product.image} />
 
+                   <div> 
+                 <button className="bg-primarygreen text-black font-medium px-4 rounded py-2" onClick={() => addToCart(product.id)}>Add to cart</button>
+              </div>
+                </div>
+
+                
+           
             </div>
+
+            
          ))}
+         
     </div>
   )
 }

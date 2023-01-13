@@ -7,6 +7,7 @@ import React, { createContext, useState, useEffect } from "react";
 export const DataContext = createContext();
 export const DataProvider = (props) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false)
 
    const url = `https://fakestoreapi.com/products`
 

@@ -11,12 +11,30 @@ export const DataProvider = (props) => {
 
    const url = `https://fakestoreapi.com/products`
 
-  useEffect(()=>{
-    axios.get(url).then((response)=>{
-      setProducts(response.data)
-      console.log(response.data)
-    })
-  },[url])
+  // useEffect(()=>{
+  //   axios.get(url).then((response)=>{
+  //     setProducts(response.data)
+  //     console.log(response.data)
+  //   })
+  // },[url])
+
+  const showProducts = async() => {
+    try {
+      const data = await axios 
+      .get(url)
+      .then(res=> {
+        setProducts(res.data)
+        console.log(res.data)
+      });
+      setLoading(true);
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(()=> {
+    showProducts();
+  }, []);
   
 
   const [cart, setCart] = useState([]);
@@ -42,6 +60,7 @@ export const DataProvider = (props) => {
 
   const value = {
     products: [products, setProducts],
+    loading: [loading, setLoading],
     cart: [cart, setCart],
     addToCart: addToCart,
   };

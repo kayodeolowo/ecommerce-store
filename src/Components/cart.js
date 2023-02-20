@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DataContext } from "../Context/DataProvider";
-import {FaCheckSquare} from 'react-icons/fa'
 import {HiOutlinePlusCircle, HiOutlineMinusCircle} from 'react-icons/hi'
 import {BsChevronDown} from "react-icons/bs"
 
@@ -10,12 +9,18 @@ function Cart() {
   
   const [cart, setCart] = useContext(DataContext).cart;
   const [total, setTotal] = useState();
+
+
+
+  
   
  
 
 
   const getTotal = () => {
     let summ = 0;
+  
+    
     for (let i = 0; i < cart.length; i++) {
       summ +=  cart[i].price * cart[i].count  ;
     }
@@ -28,6 +33,7 @@ function Cart() {
   
 
   const increase = (id) => {
+    
     cart.forEach((element) => {
       if (element.id === id) {
         element.count += 1;
@@ -61,7 +67,7 @@ function Cart() {
     <div className="container mx-auto  lg:px-10 xl:max-w-[1280px] lg:mt-20">
       
       
-      { cart.length ? (  cart.map((item, index) =>
+      { cart.length ? ( cart.map((item, index) =>
        (
          
         <div key={index} className="flex flex-row border-2 w-11/12 lg:w-full mx-auto mt-4 px-2   lg:px-8 py-2 lg:py-4 h-fit  border-primarygreen    justify-evenly sm:space-x-4 lg:justify-between rounded-lg   ">
@@ -70,7 +76,8 @@ function Cart() {
              <div className="flex mt-4 lg:mt-0  space-x-2 sm:space-x-4 lg:space-x-6"> 
             
             <img className="lg:h-14 h-8 sm:h-10" src={`${item.image}`} />
-            <h1 className="font-bold lg:mt-4 sm:mt-2 lg:text-xl">{item.name}</h1>
+            <h1 className="font-bold lg:mt-4 sm:mt-2 lg:text-xl">{item.title}</h1>
+            <h1> {item.price} </h1>
          </div>
 
           <div className="  flex mt-10 lg:mt-0  space-x-4  sm:space-x-8  "> 
@@ -87,7 +94,7 @@ function Cart() {
             </div>          
             
            <div className="flex flex-col-reverse space-y-2 lg:space-y-0  lg:flex-row justify-between items-center lg:space-x-5  lg:px-2  lg:pb-2 rounded border-primarygreen lg:border-2 lg:pt-1"> 
-              <h4 className="font-bold mt-4  lg:mt-0 text-sm sm:text-2xl lg:text-base text-textGray flex items-center"> <span className="lg:hidden text-sm text-textGray"> ₦ </span> {item.count * item.price}</h4>
+              <h4 className="font-bold mt-4  lg:mt-0 text-sm sm:text-2xl lg:text-base  flex items-center"> <span className="lg:hidden text-sm text-textGray"> ₦ </span> {item.id * item.price}</h4>
               <HiOutlineMinusCircle className="hover:cursor-pointer text-xl sm:text-3xl lg:text-base" onClick={() => decrease(item.id)}> - </HiOutlineMinusCircle>
               <span className="text-textGray">{item.count}</span>
               

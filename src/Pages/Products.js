@@ -9,33 +9,28 @@ const Products = () => {
 
 
   return (
-    <div>
-
-       <div className='flex justify-center '> 
-                     {loading? setProducts : 
-                     <div className='flex flex-col justify-center mt-[20%] items-center'>
-                        
-                        <FadeLoader color="#36d7b7" />
-                         
-                          </div> }
-
-                </div>
+    <div>       
 
 
 
-         {  (products.map((product)=>(
+        <div> 
+                         { loading ?  (products.map((product)=>(
             <div  product={product} key={product.id}> 
                <div> 
                      <h1> {product.title} </h1>
+                     <img className="h-12"  src={product.image} />
+                     <p> {product.price} </p>
+                     
 
-                  <img className="h-12"  src={product.image} />
+                  
 
                    <div> 
                  <button className="bg-primarygreen text-black font-medium px-4 rounded py-2" onClick={() => addToCart(product.id)}>Add to cart</button>
               </div>
                 </div>   
             </div>      
-         )   ))  }
+         )   )) : <FadeLoader className="w-full mx-auto mt-[40%] md:mt-[15%]" color="#36d7b7" /> }
+        </div>
        </div>
   )
 }

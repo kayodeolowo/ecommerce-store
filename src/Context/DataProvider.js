@@ -5,9 +5,11 @@ import React, { createContext, useState, useEffect } from "react";
 
 
 export const DataContext = createContext();
+
 export const DataProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false)
+  
 
    const url = `https://fakestoreapi.com/products`
 
@@ -66,6 +68,8 @@ export const DataProvider = (props) => {
   };
 
   return (
-    <DataContext.Provider value={value}>{props.children}</DataContext.Provider>
+    <DataContext.Provider value={value}>
+      {props.children}
+    </DataContext.Provider>
   );
 };
